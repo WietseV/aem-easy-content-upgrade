@@ -27,6 +27,8 @@ import org.osgi.annotation.versioning.ProviderType;
 import de.valtech.aecu.api.groovy.console.bindings.filters.FilterBy;
 import de.valtech.aecu.api.service.AecuException;
 
+import javax.annotation.Nonnull;
+
 /**
  * This class provides the builder methods to perform a content upgrade.
  *
@@ -767,6 +769,15 @@ public interface ContentUpgrade {
      * @throws AecuException        other error
      */
     void run(boolean dryRun) throws PersistenceException, AecuException;
+
+    /**
+     * Creates a label in the i18n node under the corresponding language node.
+     *
+     * @param language
+     * @param key
+     * @param value
+     */
+    ContentUpgrade doCreateLabel(String language, String key, String value);
 
 }
 
