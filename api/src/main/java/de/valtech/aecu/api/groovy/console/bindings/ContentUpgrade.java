@@ -27,6 +27,7 @@ import org.osgi.annotation.versioning.ProviderType;
 import de.valtech.aecu.api.groovy.console.bindings.filters.FilterBy;
 import de.valtech.aecu.api.service.AecuException;
 
+
 /**
  * This class provides the builder methods to perform a content upgrade.
  *
@@ -767,6 +768,16 @@ public interface ContentUpgrade {
      * @throws AecuException        other error
      */
     void run(boolean dryRun) throws PersistenceException, AecuException;
+
+    /**
+     * Creates a label in the i18n node under the corresponding language node. The node is named after the key value and it gets a
+     * sling:message with the value's value. The node is primaryType sling:MessageEntry.
+     *
+     * @param language
+     * @param key
+     * @param value
+     */
+    ContentUpgrade doCreateLabel(String language, String key, String value);
 
 }
 
