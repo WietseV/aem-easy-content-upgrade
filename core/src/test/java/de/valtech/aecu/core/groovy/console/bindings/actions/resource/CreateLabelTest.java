@@ -43,7 +43,6 @@ class CreateLabelTest {
 
     @BeforeEach
     void setUp() throws RepositoryException {
-        MockitoAnnotations.openMocks(this);
         when(resource.getResourceResolver()).thenReturn(resourceResolver);
         when(resourceResolver.adaptTo(Session.class)).thenReturn(session);
         when(session.getNode(any())).thenReturn(i18nNode);

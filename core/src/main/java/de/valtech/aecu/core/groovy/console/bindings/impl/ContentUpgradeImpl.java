@@ -99,7 +99,6 @@ public class ContentUpgradeImpl implements ContentUpgrade {
     private FilterBy filter = null;
     private List<Action> actions = new ArrayList<>();
 
-
     /**
      * Constructor
      *
@@ -148,11 +147,9 @@ public class ContentUpgradeImpl implements ContentUpgrade {
     }
 
     @Override
-    public ContentUpgrade forResourcesByPropertyQuery(@Nonnull String path, Map<String, String> properties,
-                                                      @Nonnull String nodeType) {
+    public ContentUpgrade forResourcesByPropertyQuery(@Nonnull String path, Map<String, String> properties, @Nonnull String nodeType) {
         final StringBuilder sbQuery = new StringBuilder();
-        sbQuery.append(
-                "SELECT * FROM [" + escapeForSql2(nodeType) + "] AS s WHERE ISDESCENDANTNODE(s,'" + escapeForSql2(path) + "') ");
+        sbQuery.append("SELECT * FROM [" + escapeForSql2(nodeType) + "] AS s WHERE ISDESCENDANTNODE(s,'" + escapeForSql2(path) + "') ");
         if (properties != null) {
             properties.forEach((key, value) -> {
                 if (key == null || value == null) {
@@ -408,15 +405,13 @@ public class ContentUpgradeImpl implements ContentUpgrade {
     }
 
     @Override
-    public ContentUpgrade doCopyPropertyToRelativePath(@Nonnull String name, String newName,
-                                                       @Nonnull String relativeResourcePath) {
+    public ContentUpgrade doCopyPropertyToRelativePath(@Nonnull String name, String newName, @Nonnull String relativeResourcePath) {
         actions.add(new CopyPropertyToRelativePath(name, newName, context.getResolver(), relativeResourcePath));
         return this;
     }
 
     @Override
-    public ContentUpgrade doMovePropertyToRelativePath(@Nonnull String name, String newName,
-                                                       @Nonnull String relativeResourcePath) {
+    public ContentUpgrade doMovePropertyToRelativePath(@Nonnull String name, String newName, @Nonnull String relativeResourcePath) {
         actions.add(new MovePropertyToRelativePath(name, newName, context.getResolver(), relativeResourcePath));
         return this;
     }
@@ -434,8 +429,7 @@ public class ContentUpgradeImpl implements ContentUpgrade {
     }
 
     @Override
-    public ContentUpgrade doReplaceValuesOfMultiValueProperty(@Nonnull String name, @Nonnull String[] oldValues,
-                                                              @Nonnull String[] newValues) {
+    public ContentUpgrade doReplaceValuesOfMultiValueProperty(@Nonnull String name, @Nonnull String[] oldValues, @Nonnull String[] newValues) {
         actions.add(new ReplaceMultiValues(name, oldValues, newValues));
         return this;
     }
